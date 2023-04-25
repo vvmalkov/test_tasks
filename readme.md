@@ -1,17 +1,18 @@
-# code-review 1
+# Задание №1.
+## code-review 1
 ```python
 def request_handler(request):
     local_file = open(request.params['file_path'])
     return Response(local_file.read())
 ```
 
-# code-review 2
+## code-review 2
 ```python
 def someVeryPythonicFunction():
     pass
 ```
 
-# code-review 3; file: some_module.py
+## code-review 3; file: some_module.py
 ```python
 def some_useful_function_to_be_imported():
     pass
@@ -26,7 +27,7 @@ app = some_heavy_app_initialization()
 app.run()
 ```
 
-# code-review 4
+## code-review 4
 ```python
 a = 1
 b = 2
@@ -36,13 +37,13 @@ a = c
 print(a, b)
 ```
 
-# code-review 5
+## code-review 5
 ```python
 urls = (page.url for page in browser.pages)
 content_sizes = map(get_content_size, urls)
 url2content_size = dict(zip(urls, content_sizes))
 ```
-# code-review 6
+## code-review 6
 ```python
 class AsyncSharedResourceManager(SomeBasicResourceManager):
     _shared_resource = None
@@ -73,7 +74,9 @@ async def main():
     await gather(coro(), coro())
 ```
 
-Задание №2, обертка для REST API
+# Задание №2. 
+## Обертка для REST API
+
 
 От вас требуется реализовать обертку для REST API веб-сервиса bit.ly. Следующий фрагмент кода описывает предполагаемый сценарий использования: 
 ```python
@@ -91,7 +94,7 @@ async with BitlyAPI(**credentials) as api:
         print(err)  # output: [404] NOT FOUND 
 ```
 
-Требования и пояснения к заданию №2.
+## Требования и пояснения к заданию №2.
 
 В качестве сервиса, обертку над API которого вы хотите реализовать, вы можете выбрать любой популярный сервис с REST API (или другим видом HTTP API). Например, нам будет особенно интересно API какого-нибудь рекламного кабинета =) Вариант с bit.ly предложен как один из наиболее простых.
 Если вашим выбором все-таки будет bit.ly, код, приведенный выше, должен выполняться и демонстрировать ожидаемое поведение. Для других сервисов вам потребуется написать аналогичный демонстрационный код.
