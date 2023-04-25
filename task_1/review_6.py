@@ -1,21 +1,22 @@
 class AsyncSharedResourceManager(SomeBasicResourceManager):
-    _shared_resource = None
+    shared_resource = None
 
     _shared_resource_refcount = 0
 
-    def __aenter__(self):
+    async def __aenter__(self):
 
         if not self._shared_resource_refcount:
-            self._shared_resource = await self._init_resource()
-
+            self.shared_resource = await self._init_resource()
         self._shared_resource_refcount += 1
+        return await super().__aenter__()
 
-    def __aexit__(self, exc_type, exc_val, exc_tb):
+    async def __aexit__(self, exc_type, exc_val, exc_tb):
 
-        self._shared_resource_refcount -= 1
-
+        self.shared_resource_refcount -= 1
+        result = await super().__aexit__(exc_type, exc_val, exc_tb)
         if not self._shared_resource_refcount:
-            self._shared_resource = await self._close_resource()
+            self.shared_resource = await self._close_resource()
+        return result
 
 
 async def coro():

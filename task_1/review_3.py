@@ -6,6 +6,6 @@ def some_heavy_app_initialization():
     pass
 
 
-app = some_heavy_app_initialization()
-
-app.run()
+if __name__ == '__main__':
+    app = some_heavy_app_initialization()
+    app.run()
