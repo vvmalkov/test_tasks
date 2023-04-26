@@ -12,7 +12,7 @@ class AsyncSharedResourceManager(SomeBasicResourceManager):
 
     async def __aexit__(self, exc_type, exc_val, exc_tb):
 
-        self.shared_resource_refcount -= 1
+        self._shared_resource_refcount -= 1
         result = await super().__aexit__(exc_type, exc_val, exc_tb)
         if not self._shared_resource_refcount:
             self.shared_resource = await self._close_resource()
